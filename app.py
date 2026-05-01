@@ -102,11 +102,32 @@ html, body, [class*="css"] {
     margin-top: 16px;
 }
 
-/* ── Eliminate black top gap ── */
-[data-testid="stHeader"],
-header[data-testid="stHeader"] {
-    display: none !important;
+/* ── Eliminate black top gap (keep sidebar toggle alive) ── */
+[data-testid="stHeader"] {
+    background: transparent !important;
     height: 0 !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    border-bottom: none !important;
+}
+
+/* Keep the sidebar collapse/expand toggle always visible */
+[data-testid="collapsedControl"] {
+    display: flex !important;
+    position: fixed !important;
+    top: 10px !important;
+    left: 10px !important;
+    z-index: 9999 !important;
+    background: rgba(167, 139, 250, 0.2) !important;
+    border: 1px solid rgba(167, 139, 250, 0.4) !important;
+    border-radius: 8px !important;
+    padding: 4px !important;
+    backdrop-filter: blur(8px) !important;
+    cursor: pointer !important;
+    transition: background 0.2s ease !important;
+}
+[data-testid="collapsedControl"]:hover {
+    background: rgba(167, 139, 250, 0.4) !important;
 }
 
 /* Remove ALL top padding/margin from the main container */
@@ -117,7 +138,6 @@ header[data-testid="stHeader"] {
 [data-testid="stAppViewContainer"] > .main {
     padding-top: 0 !important;
 }
-.stApp > header { display: none !important; }
 
 /* Hero banner */
 .hero-banner {
